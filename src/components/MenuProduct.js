@@ -1,17 +1,22 @@
 import React from "react";
 
-const MenuProduct = () => {
+const MenuProduct = ({id, image, title, cuisines, diet, sourceUrl, deleteMenuItem}) => {
+  
   return (
-    <div>
-      <h3>Nombre del plato</h3>
+    <div key={id}>
+      <h3>{title}</h3>
       <img
         style={{ width: "300px", height: "300px" }}
-        src="https://www.recetasderechupete.com/wp-content/uploads/2020/01/Menu-semanal-tuper.jpg"
-        alt=""
+        src={image}
+        alt={title}
       ></img>
-      <p>Características del plato</p>
+      <ul>
+        <li>Tipo de cocina: {cuisines}</li>
+        <li>Categoría: {diet}</li>
+        <li><a href={sourceUrl} target="_blank" rel="noreferrer">Receta</a></li>
+      </ul>
       <button>Ver detalles</button>
-      <button>Eliminar</button>
+      <button onClick={() => deleteMenuItem(id)}>Eliminar</button>
     </div>
   );
 };
