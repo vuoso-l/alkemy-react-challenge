@@ -1,22 +1,57 @@
-import axios from "axios";
+import React, { useContext } from "react";
+import Header from "../components/Header";
+import MenuProduct from "../components/MenuProduct";
+import MenuContext from "../context/MenuContext";
+
+const Homepage = () => {
+  const { menu, deleteMenuItem } = useContext(MenuContext);
+  
+  return (
+    <div>
+      <Header />
+      <h2>Menú restaurant</h2>
+      <h3>Valor total: ${menu.amount}</h3>
+      <h3>Tiempo promedio de preparación: {menu.cookingAverage}</h3>
+      <h3>Tiempo promedio de health score: {menu.healthScoreAverage}</h3>
+      {menu.menuProducts.map((item) => (
+        <MenuProduct
+          key={item.id}
+          id={item.id}
+          image={item.image}
+          title={item.title}
+          vegetarian={item.vegetarian}
+          glutenFree={item.glutenFree}
+          veryHealthy={item.veryHealthy}
+          cuisines={item.cuisines}
+          diets={item.diets}
+          sourceUrl={item.sourceUrl}
+          deleteMenuItem={deleteMenuItem}
+        />
+      ))}      
+    </div>
+  );
+};
+
+export default Homepage;
+
+
+/* import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import MenuProduct from "../components/MenuProduct";
 import SweetAlert from "../helpers/SweetAlert";
 
 const getMenuItems = JSON.parse(localStorage.getItem("menuItems"));
-const menuInitialState =
-  getMenuItems === null
-    ? {
-        menuProducts: [],
-        amount: 0,
-        cookingAverage: 0,
-        healthScoreAverage: 0,
-      }
-    : getMenuItems;
+const defaultMenu = {
+  menuProducts: [],
+  amount: 0,
+  cookingAverage: 0,
+  healthScoreAverage: 0,
+};
+const menuInitialState = getMenuItems === null ? defaultMenu : getMenuItems;
 
 const Homepage = () => {
-  const [dietCategory, setDietCategory] = useState(null);
+  const [searchQuery, setSearchQuery] = useState(null);
   const [plate, setPlate] = useState([]);
   const [menu, setMenu] = useState(menuInitialState);
 
@@ -24,19 +59,19 @@ const Homepage = () => {
     localStorage.setItem("menuItems", JSON.stringify(menu));
   }, [menu]);
 
-  const handleChange = (e) => {
-    setDietCategory(e.target.value);
+  const handleChangeQuery = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getDietCategory();
+    getSearchQuery();
   };
 
-  const getDietCategory = async () => {
+  const getSearchQuery = async () => {
     try {
       const response = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=a6e1e1d820c3443289f108a865a8dfb5&diet=${dietCategory}&addRecipeInformation=true`
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=a6e1e1d820c3443289f108a865a8dfb5&query=${searchQuery}&addRecipeInformation=true`
       );
       setPlate(response.data.results);
     } catch (error) {
@@ -46,22 +81,64 @@ const Homepage = () => {
   const addMenuItem = (product) => {
     const itemFind = plate.find((item) => item.id === product.id);
     const menuSize = menu.menuProducts.length + 1;
-    setMenu({...menu, menuProducts: [...menu.menuProducts,itemFind], amount: menu.amount += itemFind.pricePerServing, cookingAverage: (menu.cookingAverage += itemFind.readyInMinutes) / menuSize, healthScoreAverage: (menu.healthScoreAverage += itemFind.healthScore) / menuSize});
-    console.log(menu);
-  };
+    let cookingTime = 0;
+    let healthSc = 0;
+    const avg = menu.menuProducts.map((item) => {
+      cookingTime += item.readyInMinutes;
+      healthSc += item.healthScore;
+    });
+    cookingTime += itemFind.readyInMinutes;
+    healthSc += itemFind.healthScore;
+    const cookingAvg = cookingTime / menuSize;
+    const healthAvg = healthSc / menuSize;
 
-  const deleteMenuItem = (id) => {
-    const itemIndex = menu.findIndex((item) => item.id === id);
-    if (itemIndex >= 0) {
-      const menuWithoutDeleteItem = menu.filter(
-        (item, index) => index !== itemIndex
-      );
-      setMenu(menuWithoutDeleteItem);
+    if (menuSize <= 4) {
+      setMenu({
+        ...menu,
+        menuProducts: [...menu.menuProducts, itemFind],
+        amount: (menu.amount += itemFind.pricePerServing),
+        cookingAverage: cookingAvg,
+        healthScoreAverage: healthAvg,
+      });
+    } else {
+      alert("Ya tenés 4 productos, no podés agregar más");
     }
   };
 
-  let id = "menuDietCategory";
-  console.log(menu);
+  const deleteMenuItem = (id) => {
+    const itemIndex = menu.menuProducts.findIndex((item) => item.id === id);
+    const menuWithoutDeleteItem = menu.menuProducts.filter(
+      (item, index) => index !== itemIndex
+    );
+    let menuSize = menuWithoutDeleteItem.length;
+
+    let amount = 0;
+    let cookingTime = 0;
+    let healthSc = 0;
+
+    const avg = menuWithoutDeleteItem.map((item) => {
+      amount += item.pricePerServing;
+      cookingTime += item.readyInMinutes;
+      healthSc += item.healthScore;
+    });
+    const cookingAvg = cookingTime / menuSize;
+    const healthAvg = healthSc / menuSize;
+
+    if (menuSize >= 1) {
+      setMenu({
+        ...menu,
+        menuProducts: menuWithoutDeleteItem,
+        amount: amount,
+        cookingAverage: cookingAvg,
+        healthScoreAverage: healthAvg,
+      });
+    } else {
+      setMenu(defaultMenu);
+    }
+  };
+
+  let idQuery = "menuSearchQuery";
+
   return (
     <div>
       <Header />
@@ -69,34 +146,31 @@ const Homepage = () => {
       <h3>Valor total: ${menu.amount}</h3>
       <h3>Tiempo promedio de preparación: {menu.cookingAverage}</h3>
       <h3>Tiempo promedio de health score: {menu.healthScoreAverage}</h3>
-       {menu.menuProducts.map((item) => (
+      {menu.menuProducts.map((item) => (
         <MenuProduct
+          key={item.id}
           id={item.id}
           image={item.image}
           title={item.title}
+          vegetarian={item.vegetarian}
+          glutenFree={item.glutenFree}
+          veryHealthy={item.veryHealthy}
           cuisines={item.cuisines}
-          diet={item.diet}
+          diets={item.diets}
           sourceUrl={item.sourceUrl}
           deleteMenuItem={deleteMenuItem}
         />
       ))}
       <h2>Buscador de platos</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor={id}>
-          Elegí el tipo de plato para tu menú
-          <select name={id} id={id} onChange={handleChange}>
-            <option value="">Seleccioná una categoría</option>
-            <option value="glutenfree">Gluten free</option>
-            <option value="ketogenic">Ketogenic</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="lacto-vegetarian">Lacto Vegetarian</option>
-            <option value="ovo-vegetarian">Ovo Vegetarian</option>
-            <option value="vegan">Vegan</option>
-            <option value="pescetarian">Pescetarian</option>
-            <option value="paleo">Paleo</option>
-            <option value="low fodmap">Low FODMAP</option>
-            <option value="whole30">Whole30</option>
-          </select>
+        <label htmlFor={idQuery}>
+          Buscá tu menú por palabra clave
+          <input
+            type="text"
+            name={idQuery}
+            id={idQuery}
+            onChange={handleChangeQuery}
+          ></input>
         </label>
         <input type="submit" value="Enviar"></input>
       </form>
@@ -104,11 +178,15 @@ const Homepage = () => {
         return (
           <>
             <MenuProduct
+              key={item.id}
               id={item.id}
               image={item.image}
               title={item.title}
+              vegetarian={item.vegetarian}
+              glutenFree={item.glutenFree}
+              veryHealthy={item.veryHealthy}
               cuisines={item.cuisines}
-              diet={item.diet}
+              diets={item.diets}
               sourceUrl={item.sourceUrl}
               deleteMenuItem={deleteMenuItem}
             />
@@ -121,3 +199,4 @@ const Homepage = () => {
 };
 
 export default Homepage;
+ */

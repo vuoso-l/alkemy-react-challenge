@@ -1,9 +1,19 @@
 import React from "react";
 
-const MenuProduct = ({id, image, title, cuisines, diet, sourceUrl, deleteMenuItem}) => {
-  
+const MenuProduct = ({
+  id,
+  image,
+  title,
+  vegetarian,
+  glutenFree,
+  veryHealthy,
+  cuisines,
+  diets,
+  sourceUrl,
+  deleteMenuItem,
+}) => {
   return (
-    <div key={id}>
+    <section>
       <h3>{title}</h3>
       <img
         style={{ width: "300px", height: "300px" }}
@@ -11,13 +21,22 @@ const MenuProduct = ({id, image, title, cuisines, diet, sourceUrl, deleteMenuIte
         alt={title}
       ></img>
       <ul>
-        <li>Tipo de cocina: {cuisines}</li>
-        <li>Categoría: {diet}</li>
-        <li><a href={sourceUrl} target="_blank" rel="noreferrer">Receta</a></li>
+        <li>Vegetariano: {vegetarian ? "Sí" : "No"}</li>
+        <li>Gluten free: {glutenFree ? "Sí" : "No"}</li>
+        <li>Saludable: {veryHealthy ? "Sí" : "No"}</li>
+        <li>
+          Tipo de cocina: {cuisines.length !== 0 ? cuisines : "No definido"}
+        </li>
+        <li>Categoría: {diets.length !== 0 ? diets : "No definido"}</li>
+        <li>
+          <a href={sourceUrl} target="_blank" rel="noreferrer">
+            Receta
+          </a>
+        </li>
       </ul>
       <button>Ver detalles</button>
       <button onClick={() => deleteMenuItem(id)}>Eliminar</button>
-    </div>
+    </section>
   );
 };
 

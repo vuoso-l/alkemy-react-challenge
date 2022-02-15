@@ -1,9 +1,8 @@
 import ProjectRoutes from "./components/ProjectRoutes";
 
-
 function App() {
   return (
-    <div >
+    <div>
       <ProjectRoutes />
     </div>
   );

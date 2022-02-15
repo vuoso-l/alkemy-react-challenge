@@ -1,4 +1,58 @@
-import axios from "axios";
+import React, { useContext } from "react";
+import Header from "../components/Header";
+import MenuProduct from "../components/MenuProduct";
+import MenuContext from "../context/MenuContext";
+import PlateContext from "../context/PlateContext";
+
+const DishSearcher = () => {
+  const { plate, handleChangeQuery, handleSubmit } = useContext(PlateContext);
+  const { addMenuItem, deleteMenuItem } = useContext(MenuContext);
+
+  let idQuery = "menuSearchQuery";
+
+  return (
+    <div>
+      <Header />
+      <h2>Buscador de platos</h2>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor={idQuery}>
+          Buscá tu menú por palabra clave
+          <input
+            type="text"
+            name={idQuery}
+            id={idQuery}
+            onChange={handleChangeQuery}
+          ></input>
+        </label>
+        <input type="submit" value="Enviar"></input>
+      </form>
+      {plate.map((item) => {
+        return (
+          <>
+            <MenuProduct
+              key={item.id}
+              id={item.id}
+              image={item.image}
+              title={item.title}
+              vegetarian={item.vegetarian}
+              glutenFree={item.glutenFree}
+              veryHealthy={item.veryHealthy}
+              cuisines={item.cuisines}
+              diets={item.diets}
+              sourceUrl={item.sourceUrl}
+              deleteMenuItem={deleteMenuItem}
+            />
+            <button onClick={() => addMenuItem(item)}>Agregar</button>
+          </>
+        );
+      })}
+    </div>
+  );
+};
+
+export default DishSearcher;
+
+/* import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import MenuProduct from "../components/MenuProduct";
@@ -107,3 +161,4 @@ const DishSearcher = () => {
 };
 
 export default DishSearcher;
+ */
