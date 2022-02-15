@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import MenuContext from "../context/MenuContext";
 
-const MenuProduct = ({
-  id,
-  image,
-  title,
-  vegetarian,
-  glutenFree,
-  veryHealthy,
-  cuisines,
-  diets,
-  sourceUrl,
-  deleteMenuItem,
-}) => {
+const MenuProduct = ({ props }) => {
+  const {
+    id,
+    image,
+    title,
+    vegetarian,
+    glutenFree,
+    veryHealthy,
+    cuisines,
+    diets,
+    sourceUrl,
+  } = props || {};
+  const { deleteMenuItem } = useContext(MenuContext);
+  
   return (
     <section>
       <h3>{title}</h3>
