@@ -22,7 +22,10 @@ const PostForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!form.email || !form.password) {
-      SweetAlert.messageError("No pueden haber campos vacíos");
+      SweetAlert.messageError(
+        "Ooops! Ocurrió un error!",
+        "No pueden haber campos vacíos"
+      );
       return;
     }
     postUser();
@@ -40,7 +43,7 @@ const PostForm = () => {
         () => navigate("/")
       );
     } catch (error) {
-      SweetAlert.messageError(error);
+      SweetAlert.messageError("Ooops! Ocurrió un error!", error);
     }
   };
 

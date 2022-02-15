@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import SweetAlert from "../helpers/SweetAlert";
 import PlateContext from "./PlateContext";
 
 const MenuContext = createContext();
@@ -15,7 +16,7 @@ const menuInitialState = getMenuItems === null ? defaultMenu : getMenuItems;
 const MenuProvider = ({ children }) => {
   const { plate } = useContext(PlateContext);
   const [menu, setMenu] = useState(menuInitialState);
-  
+
   useEffect(() => {
     localStorage.setItem("menuItems", JSON.stringify(menu));
   }, [menu]);
@@ -43,40 +44,50 @@ const MenuProvider = ({ children }) => {
         cookingAverage: cookingAvg,
         healthScoreAverage: healthAvg,
       });
+      SweetAlert.messageOk("Ítem agregado!", `Agregaste "${itemFind.title}"`);
     } else {
-      alert("Ya tenés 4 productos, no podés agregar más");
+      SweetAlert.messageError(
+        "Ya tenés 4 productos",
+        "Para agregarlo, primero tenés que eliminar uno"
+      );
     }
   };
 
   const deleteMenuItem = (id) => {
     const itemIndex = menu.menuProducts.findIndex((item) => item.id === id);
-    const menuWithoutDeleteItem = menu.menuProducts.filter(
-      (item, index) => index !== itemIndex
-    );
-    let menuSize = menuWithoutDeleteItem.length;
+    if (itemIndex >= 0) {
+      const menuWithoutDeleteItem = menu.menuProducts.filter(
+        (item, index) => index !== itemIndex
+      );
+      let menuSize = menuWithoutDeleteItem.length;
 
-    let amount = 0;
-    let cookingTime = 0;
-    let healthSc = 0;
+      let amount = 0;
+      let cookingTime = 0;
+      let healthSc = 0;
 
-    const avg = menuWithoutDeleteItem.map((item) => {
-      amount += item.pricePerServing;
-      cookingTime += item.readyInMinutes;
-      healthSc += item.healthScore;
-    });
-    const cookingAvg = cookingTime / menuSize;
-    const healthAvg = healthSc / menuSize;
+      const avg = menuWithoutDeleteItem.map((item) => {
+        amount += item.pricePerServing;
+        cookingTime += item.readyInMinutes;
+        healthSc += item.healthScore;
+      });
+      const cookingAvg = cookingTime / menuSize;
+      const healthAvg = healthSc / menuSize;
 
-    if (menuSize >= 1) {
-      setMenu({
-        ...menu,
-        menuProducts: menuWithoutDeleteItem,
-        amount: amount,
-        cookingAverage: cookingAvg,
-        healthScoreAverage: healthAvg,
+      SweetAlert.messageDelete("¿Seguro que querés eliminar este ítem?", () => {
+        if (menuSize >= 1) {
+          setMenu({
+            ...menu,
+            menuProducts: menuWithoutDeleteItem,
+            amount: amount,
+            cookingAverage: cookingAvg,
+            healthScoreAverage: healthAvg,
+          });
+        } else {
+          setMenu(defaultMenu);
+        }
       });
     } else {
-      setMenu(defaultMenu);
+      SweetAlert.messageError("Este ítem no forma parte de tu menú", "");
     }
   };
 

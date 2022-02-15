@@ -24,7 +24,7 @@ const PlateProvider = ({ children }) => {
       );
       setPlate(response.data.results);
     } catch (error) {
-      SweetAlert.messageError(error);
+      SweetAlert.messageError("Ooops! Ocurrió un error!", error);
     }
   };
   
