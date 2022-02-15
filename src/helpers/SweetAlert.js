@@ -1,9 +1,9 @@
 import Swal from "sweetalert2";
 
 const SweetAlert = {
-  messageError: (text) => {
+  messageError: (title, text) => {
     Swal.fire({
-      title: "Ooops! Ocurrió un error!",
+      title,
       text,
       icon: "error",
       confirmButtonColor: "#ff0000",
