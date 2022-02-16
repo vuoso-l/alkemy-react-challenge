@@ -27,7 +27,7 @@ const MenuProvider = ({ children }) => {
     const menuSize = menu.menuProducts.length + 1;
     let cookingTime = 0;
     let healthSc = 0;
-    const avg = menu.menuProducts.map((item) => {
+    menu.menuProducts.map((item) => {
       cookingTime += item.readyInMinutes;
       healthSc += item.healthScore;
     });
@@ -65,7 +65,7 @@ const MenuProvider = ({ children }) => {
       let cookingTime = 0;
       let healthSc = 0;
 
-      const avg = menuWithoutDeleteItem.map((item) => {
+      menuWithoutDeleteItem.map((item) => {
         amount += item.pricePerServing;
         cookingTime += item.readyInMinutes;
         healthSc += item.healthScore;

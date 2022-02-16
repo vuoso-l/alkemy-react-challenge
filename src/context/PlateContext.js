@@ -5,30 +5,35 @@ import SweetAlert from "../helpers/SweetAlert";
 const PlateContext = createContext();
 
 const PlateProvider = ({ children }) => {
-  const [searchQuery, setSearchQuery] = useState(null);
+  //const [searchQuery, setSearchQuery] = useState(null);
   const [plate, setPlate] = useState([]);
 
-  const handleChangeQuery = (e) => {
+  /* const handleChangeQuery = (e) => {
     setSearchQuery(e.target.value);
-  };
+  }; */
 
-  const handleSubmit = (e) => {
+  /* const handleSubmit = (e) => {
     e.preventDefault();
     getSearchQuery();
-  };
+  }; */
 
-  const getSearchQuery = async () => {
+  const getSearchQuery = async (searchQueryValue) => {
     try {
       const response = await axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?apiKey=a6e1e1d820c3443289f108a865a8dfb5&query=${searchQuery}&addRecipeInformation=true`
+        `https://api.spoonacular.com/recipes/complexSearch?apiKey=a6e1e1d820c3443289f108a865a8dfb5&query=${searchQueryValue.search}&addRecipeInformation=true`
       );
-      setPlate(response.data.results);
+      response.data.results.length > 0
+        ? setPlate(response.data.results)
+        : SweetAlert.messageError(
+            `Ooops! La palabra "${searchQueryValue.search}" no fue encontrada`,
+            ""
+          );
     } catch (error) {
       SweetAlert.messageError("Ooops! Ocurrió un error!", error);
     }
   };
-  
-  const data = { plate, handleChangeQuery, handleSubmit, getSearchQuery };
+
+  const data = { plate, getSearchQuery };
 
   return <PlateContext.Provider value={data}>{children}</PlateContext.Provider>;
 };
