@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import PlateContext from "../context/PlateContext";
 
 const SearcherForm = () => {
@@ -20,26 +19,24 @@ const SearcherForm = () => {
     return errors;
   };
 
-  const handleSubmit = (values, {setFieldError}) => {
+  const handleSubmit = (values, { setFieldError }) => {
     return getSearchQuery(values).catch(() => {
-      setFieldError("search", "Palabra no existente")
-    })
+      setFieldError("search", "Palabra no existente");
+    });
   };
 
   return (
     <div>
       <Formik
         initialValues={initialValues}
-        validate={validateForm}        
+        validate={validateForm}
         onSubmit={handleSubmit}
       >
         {({ errors, isSubmitting }) => (
           <Form>
             <Field name="search" placeholder="Buscar por palabra" />
             <ErrorMessage name="search" component="span" />
-            <button disabled={isSubmitting}>
-              Consultar
-            </button>
+            <button disabled={isSubmitting}>Consultar</button>
           </Form>
         )}
       </Formik>
