@@ -7,7 +7,6 @@ const Header = () => {
       <ul>
         <Link to={"/"}>Homepage</Link>
         <Link to={"/login"}>Login</Link>
-        <Link to={"/buscar-platos"}>Buscador de platos</Link>
       </ul>
     </div>
   );

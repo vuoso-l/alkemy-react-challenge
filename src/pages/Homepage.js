@@ -1,23 +1,26 @@
-import React, { useContext } from "react";
+import React from "react";
 import Header from "../components/Header";
-import MenuProduct from "../components/MenuProduct";
-import MenuContext from "../context/MenuContext";
+import Menu from "../components/Menu";
+import DishSearcher from "../components/DishSearcher";
 
 const Homepage = () => {
-  const { menu } = useContext(MenuContext);
-  
   return (
     <div>
       <Header />
-      <h2>Menú restaurant</h2>
-      <h3>Valor total: ${menu.amount}</h3>
-      <h3>Tiempo promedio de preparación: {menu.cookingAverage}</h3>
-      <h3>Tiempo promedio de health score: {menu.healthScoreAverage}</h3>
-      {menu.menuProducts.map((item) => (
-        <MenuProduct
-          props={item}
-        />
-      ))}      
+      <ul>
+        <li>
+          <a href="#menu">Menú</a>
+        </li>
+        <li>
+          <a href="#searcher">Buscador de platos</a>
+        </li>
+      </ul>
+      <section id="menu">
+        <Menu />
+      </section>
+      <section id="searcher">
+        <DishSearcher />
+      </section>
     </div>
   );
 };
