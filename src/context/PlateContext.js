@@ -5,17 +5,7 @@ import SweetAlert from "../helpers/SweetAlert";
 const PlateContext = createContext();
 
 const PlateProvider = ({ children }) => {
-  //const [searchQuery, setSearchQuery] = useState(null);
   const [plate, setPlate] = useState([]);
-
-  /* const handleChangeQuery = (e) => {
-    setSearchQuery(e.target.value);
-  }; */
-
-  /* const handleSubmit = (e) => {
-    e.preventDefault();
-    getSearchQuery();
-  }; */
 
   const getSearchQuery = async (searchQueryValue) => {
     try {

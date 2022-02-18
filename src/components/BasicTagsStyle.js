@@ -46,24 +46,6 @@ export const H4Style = styled.h4`
   }
 `;
 
-export const H4ShopCart = styled.h4`
-  font-size: 20px;
-  background-color: white;
-  border-radius: 50%;
-  text-align: center;
-  padding: 5px;
-  margin-bottom: 5px;
-  &:hover {
-    cursor: pointer;
-  }
-  @media ${device.tablet} {
-    font-size: 22px;
-  }
-  @media ${device.laptop} {
-    font-size: 28px;
-  }
-`;
-
 export const ImgStyle = styled.img`
   width: 80%;
   height: auto;
