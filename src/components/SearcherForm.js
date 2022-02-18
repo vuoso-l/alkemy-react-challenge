@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import PlateContext from "../context/PlateContext";
+import { GralButton } from "./BasicTagsStyle";
+import { ErrorStyle } from "./ErrorStyle";
 
 const SearcherForm = () => {
   const { getSearchQuery } = useContext(PlateContext);
@@ -12,7 +14,7 @@ const SearcherForm = () => {
   const validateForm = (values) => {
     const errors = {};
     if (!values.search) {
-      errors.search = "Requerido";
+      errors.search = "Requerido, no puede estar vacío";
     } else if (values.search.length < 2) {
       errors.search = "Se debe ingresar dos o más caracteres";
     }
@@ -26,21 +28,31 @@ const SearcherForm = () => {
   };
 
   return (
-    <div>
+    <>
       <Formik
         initialValues={initialValues}
         validate={validateForm}
         onSubmit={handleSubmit}
       >
         {({ errors, isSubmitting }) => (
-          <Form>
-            <Field name="search" placeholder="Buscar por palabra" />
-            <ErrorMessage name="search" component="span" />
-            <button disabled={isSubmitting}>Consultar</button>
+          <Form className="form">
+            <ErrorStyle>
+              <Field
+                className={errors.search ? "form-control mb-3 mt-3 inputError" : "form-control mb-3 mt-3"}
+                name="search"
+                placeholder="Buscar por palabra"
+              />
+              <ErrorMessage
+                className={errors.search ? "textError" : ""}
+                name="search"
+                component="div"
+              />
+            </ErrorStyle>
+            <GralButton disabled={isSubmitting}>Consultar</GralButton>
           </Form>
         )}
       </Formik>
-    </div>
+    </>
   );
 };
 

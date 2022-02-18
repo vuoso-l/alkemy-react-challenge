@@ -2,26 +2,31 @@ import React from "react";
 import Header from "../components/Header";
 import Menu from "../components/Menu";
 import DishSearcher from "../components/DishSearcher";
+import { MenuButton, UlHomepage } from "../components/BasicTagsStyle";
+import Home from "../components/Home";
+import Footer from "../components/Footer";
 
 const Homepage = () => {
   return (
-    <div>
+    <>
       <Header />
-      <ul>
-        <li>
+      <Home />
+      <UlHomepage>
+        <MenuButton>
           <a href="#menu">Menú</a>
-        </li>
-        <li>
+        </MenuButton>
+        <MenuButton>
           <a href="#searcher">Buscador de platos</a>
-        </li>
-      </ul>
+        </MenuButton>
+      </UlHomepage>
       <section id="menu">
         <Menu />
       </section>
       <section id="searcher">
         <DishSearcher />
       </section>
-    </div>
+      <Footer />
+    </>
   );
 };
 

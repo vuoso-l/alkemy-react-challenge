@@ -1,41 +1,43 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import SweetAlert from "../helpers/SweetAlert";
 import { useNavigate } from "react-router-dom";
-
-const initialState = {
-  email: "",
-  password: "",
-};
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { GralButton } from "./BasicTagsStyle";
+import { ErrorStyle } from "./ErrorStyle";
 
 const PostForm = () => {
-  const [form, setForm] = useState(initialState);
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
+  const validateForm = (values) => {
+    const errors = {};
+    if (!values.email) {
+      errors.email = "Requerido, no puede estar vacío";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+      errors.email = "Formato ingresado no es válido";
+    } else if (!values.password) {
+      errors.password = "Requerido, no puede estar vacío";
+    }
+    return errors;
+  };
 
   let navigate = useNavigate();
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
+
+  const handleSubmit = (values, { setFieldError }) => {
+    return postUser(values).catch(() => {
+      setFieldError("email", "Email y/o contraseña no existente");
+      setFieldError("password", "Email y/o contraseña no existente");
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!form.email || !form.password) {
-      SweetAlert.messageError(
-        "Ooops! Ocurrió un error!",
-        "No pueden haber campos vacíos"
-      );
-      return;
-    }
-    postUser();
-  };
-
-  const postUser = async () => {
+  const postUser = async (values) => {
     try {
       const response = await axios.post("http://challenge-react.alkemy.org/", {
-        email: form.email,
-        password: form.password,
+        email: values.email,
+        password: values.password,
       });
       localStorage.setItem("userToken", JSON.stringify(response.data.token));
       SweetAlert.messageLoginOk(
@@ -48,29 +50,51 @@ const PostForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">
-        Email
-        <input
-          type="email"
-          name="email"
-          id="email"
-          onChange={handleChange}
-          value={form.email}
-        ></input>
-      </label>
-      <label htmlFor="password">
-        Contraseña
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={handleChange}
-          value={form.password}
-        ></input>
-      </label>
-      <input type="submit" value="Enviar"></input>
-    </form>
+    <div>
+      <Formik
+        initialValues={initialValues}
+        validate={validateForm}
+        onSubmit={handleSubmit}
+      >
+        {({ errors, isSubmitting }) => (
+          <Form className="form">
+            <ErrorStyle>
+              <Field
+                className={
+                  errors.email
+                    ? "form-control mb-3 mt-3 inputError"
+                    : "form-control mb-3 mt-3"
+                }
+                type="email"
+                name="email"
+                placeholder="Ingresá tu email"
+              />
+              <ErrorMessage
+                className={errors.email ? "textError" : ""}
+                name="email"
+                component="div"
+              />
+              <Field
+                className={
+                  errors.password
+                    ? "form-control mb-3 mt-3 inputError"
+                    : "form-control mb-3 mt-3"
+                }
+                type="password"
+                name="password"
+                placeholder="Ingresá tu contraseña"
+              />
+              <ErrorMessage
+                className={errors.password ? "textError" : ""}
+                name="password"
+                component="div"
+              />
+            </ErrorStyle>
+            <GralButton disabled={isSubmitting}>Enviar</GralButton>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 

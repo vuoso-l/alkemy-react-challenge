@@ -1,5 +1,15 @@
 import React, { useContext } from "react";
+import { Card, li } from "react-bootstrap";
 import MenuContext from "../context/MenuContext";
+import IsOpenContext from "../context/IsOpenContext";
+import {
+  DeleteButton,
+  GralButton,
+  GralUl,
+  H3Style,
+  MenuProductImg,
+} from "./BasicTagsStyle";
+import { MenuProductStyle } from "./MenuProductStyle";
 
 const MenuProduct = ({ props }) => {
   const {
@@ -14,16 +24,19 @@ const MenuProduct = ({ props }) => {
     sourceUrl,
   } = props || {};
   const { deleteMenuItem } = useContext(MenuContext);
-  
+  const { openDetail } = useContext(IsOpenContext);
+
   return (
-    <section>
-      <h3>{title}</h3>
-      <img
-        style={{ width: "300px", height: "300px" }}
+    <MenuProductStyle>
+      <MenuProductImg
+        variant="top"
         src={image}
         alt={title}
-      ></img>
-      <ul>
+        onClick={openDetail}
+      />
+
+      <H3Style>{title}</H3Style>
+      <GralUl>
         <li>Vegetariano: {vegetarian ? "Sí" : "No"}</li>
         <li>Gluten free: {glutenFree ? "Sí" : "No"}</li>
         <li>Saludable: {veryHealthy ? "Sí" : "No"}</li>
@@ -31,15 +44,20 @@ const MenuProduct = ({ props }) => {
           Tipo de cocina: {cuisines.length !== 0 ? cuisines : "No definido"}
         </li>
         <li>Categoría: {diets.length !== 0 ? diets : "No definido"}</li>
-        <li>
+      </GralUl>
+      <div className="btn-group">
+        <GralButton>
           <a href={sourceUrl} target="_blank" rel="noreferrer">
             Receta
           </a>
-        </li>
-      </ul>
-      <button>Ver detalles</button>
-      <button onClick={() => deleteMenuItem(id)}>Eliminar</button>
-    </section>
+        </GralButton>
+        <DeleteButton          
+          onClick={() => deleteMenuItem(id)}
+        >
+          Eliminar
+        </DeleteButton>
+      </div>
+    </MenuProductStyle>
   );
 };
 

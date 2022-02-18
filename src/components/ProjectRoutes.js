@@ -6,19 +6,22 @@ import Login from "../pages/Login";
 import PrivateRoute from "./PrivateRoute";
 import { PlateProvider } from "../context/PlateContext";
 import { MenuProvider } from "../context/MenuContext";
+import { IsOpenProvider } from "../context/IsOpenContext";
 
 const ProjectRoutes = () => {
   return (
     <div>
       <PlateProvider>
         <MenuProvider>
-          <Routes>
-            <Route path="/" element={<PrivateRoute />}>
-              <Route path="/" element={<Homepage />} />
-            </Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<Error404 />} />
-          </Routes>
+          <IsOpenProvider>
+            <Routes>
+              <Route path="/" element={<PrivateRoute />}>
+                <Route path="/" element={<Homepage />} />
+              </Route>
+              <Route path="/login" element={<Login />} />
+              <Route path="*" element={<Error404 />} />
+            </Routes>
+          </IsOpenProvider>
         </MenuProvider>
       </PlateProvider>
     </div>

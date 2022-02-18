@@ -1,14 +1,20 @@
 import React from "react";
+import { H2Style } from "../components/BasicTagsStyle";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
+import { LoginStyle } from "../components/LoginStyle";
 import PostForm from "../components/PostForm";
 
 const Login = () => {
   return (
-    <div>
+    <>
       <Header />
-      <h2>Login</h2>
-      <PostForm />
-    </div>
+      <LoginStyle>
+        <H2Style>Login</H2Style>
+        <PostForm />
+      </LoginStyle>
+      <Footer />
+    </>
   );
 };
 

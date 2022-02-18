@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
+import { H2Style } from "../components/BasicTagsStyle";
+import { NotFoundStyle } from "../components/Error404Style";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 const Error404 = () => {
   return (
-    <div>Error 404</div>
-  )
-}
+    <>
+      <Header />
+      <NotFoundStyle>
+        <H2Style>Page not found</H2Style>
+      </NotFoundStyle>
+      <Footer />
+    </>
+  );
+};
 
-export default Error404
+export default Error404;
