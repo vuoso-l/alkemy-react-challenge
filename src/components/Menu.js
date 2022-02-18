@@ -15,7 +15,7 @@ const Menu = () => {
       {menu.menuProducts.length >= 1 && (
         <ProductCardStyle isOpen={isOpen}>
           {menu.menuProducts.map((item) => (
-            <div>
+            <div key={item.id}>
               <MenuProduct props={item} />
             </div>
           ))}

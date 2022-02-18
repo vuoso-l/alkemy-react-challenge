@@ -17,7 +17,7 @@ const DishSearcher = () => {
       {plate.length >= 1 && (
         <ProductCardStyle>
           {plate.map((item) => (
-            <div>
+            <div key={item.id}>
               <MenuProduct props={item} />
               <AddButton onClick={() => addMenuItem(item)}>Agregar</AddButton>
             </div>
