@@ -3,6 +3,7 @@ import { device } from "../styleAux/deviceSize";
 import { color, displayFlex } from "../styleAux/theme";
 
 export const HomepageSection = styled.div`
+${displayFlex("flex", "column", "center", "center")};
   padding: 30px 0px;
 `;
 

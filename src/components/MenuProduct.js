@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Card, li } from "react-bootstrap";
 import MenuContext from "../context/MenuContext";
 import IsOpenContext from "../context/IsOpenContext";
 import {
@@ -51,11 +50,7 @@ const MenuProduct = ({ props }) => {
             Receta
           </a>
         </GralButton>
-        <DeleteButton          
-          onClick={() => deleteMenuItem(id)}
-        >
-          Eliminar
-        </DeleteButton>
+        <DeleteButton onClick={() => deleteMenuItem(id)}>Eliminar</DeleteButton>
       </div>
     </MenuProductStyle>
   );

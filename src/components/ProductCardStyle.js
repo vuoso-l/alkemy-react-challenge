@@ -3,7 +3,8 @@ import { device } from "../styleAux/deviceSize";
 import { color, displayFlex } from "../styleAux/theme";
 
 export const ProductCardStyle = styled.div`
-  ${displayFlex("flex", "column", "center", "center")};
+  ${displayFlex("", "column", "center", "center")};
+  display: ${({ isOpen }) => (isOpen ? "none" : "flex")};
   max-width: 100%;
   width: 100%;
   padding: 20px 0px;

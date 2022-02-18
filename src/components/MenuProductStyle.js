@@ -3,8 +3,7 @@ import { device } from "../styleAux/deviceSize";
 import { displayFlex } from "../styleAux/theme";
 
 export const MenuProductStyle = styled.section`
-  ${displayFlex("", "column", "center", "center")};
-  display: ${({ isOpen }) => (isOpen ? "none" : "flex")};
+  ${displayFlex("flex", "column", "center", "center")};
   width: 80%;
   height: auto;
   padding: 15px;
