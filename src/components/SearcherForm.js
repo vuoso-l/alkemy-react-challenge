@@ -48,7 +48,7 @@ const SearcherForm = () => {
                 component="div"
               />
             </ErrorStyle>
-            <GralButton disabled={isSubmitting}>Consultar</GralButton>
+            <GralButton type="submit" disabled={isSubmitting}>Consultar</GralButton>
           </Form>
         )}
       </Formik>

@@ -90,7 +90,7 @@ const PostForm = () => {
                 component="div"
               />
             </ErrorStyle>
-            <GralButton disabled={isSubmitting}>Enviar</GralButton>
+            <GralButton type="submit" disabled={isSubmitting}>Enviar</GralButton>
           </Form>
         )}
       </Formik>
