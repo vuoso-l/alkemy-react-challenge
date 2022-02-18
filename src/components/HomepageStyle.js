@@ -3,4 +3,12 @@ import { displayFlex } from "../styleAux/theme";
 
 export const HomepageStyle = styled.div`
   ${displayFlex("flex", "column", "center", "center")};
+  .header {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 0;
+  }
 `;

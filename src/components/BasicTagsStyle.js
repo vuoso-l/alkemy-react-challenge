@@ -89,10 +89,6 @@ export const DeleteButton = styled(GralButton)`
   background-color: red;
 `;
 
-export const MenuButton = styled(GralButton)`
-  background-color: #3d43e9;
-`;
-
 export const GralUl = styled.ul`
   border-top: 1px solid;
   border-bottom: 1px solid;
@@ -108,12 +104,10 @@ export const GralUl = styled.ul`
 `;
 
 export const UlHomepage = styled.ul`
-  ${displayFlex("flex", "column", "center", "flex-end")};
-  position: sticky;
-  top: 0;
+  ${displayFlex("flex", "row", "center", "flex-end")};
   width: 100%;
   padding: 15px 0px;
-  z-index: 999;
+  z-index: 9999;
 `;
 
 export const ParagraphHome = styled.div`
