@@ -3,7 +3,7 @@ import { device } from "../styleAux/deviceSize";
 import { color, displayFlex } from "../styleAux/theme";
 
 export const HomepageSection = styled.div`
-${displayFlex("flex", "column", "center", "center")};
+  ${displayFlex("flex", "column", "center", "center")};
   padding: 30px 0px;
 `;
 
@@ -114,4 +114,27 @@ export const UlHomepage = styled.ul`
   width: 100%;
   padding: 15px 0px;
   z-index: 999;
+`;
+
+export const ParagraphHome = styled.div`
+  width: 100%;
+  background-color: skyblue;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: justify;
+  @media ${device.mobileM} {
+    width: 85%;
+    padding: 30px;
+  }
+  @media ${device.mobileL} {
+    width: 70%;
+    padding: 30px;
+  }
+  @media ${device.tablet} {
+    padding: 40px;
+  }
+  @media ${device.laptop} {
+    width: 50%;
+    padding: 40px;
+  }
 `;
