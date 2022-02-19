@@ -18,11 +18,11 @@ const ProjectRoutes = () => {
             <IsOpenProvider>
               <Routes>
                 <Route
-                  path="/alkemy-react-challenge"
+                  path="/"
                   element={<PrivateRoute />}
                 >
                   <Route
-                    path="/alkemy-react-challenge"
+                    path="/"
                     element={<Homepage />}
                   />
                 </Route>

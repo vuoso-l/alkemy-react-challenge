@@ -37,7 +37,7 @@ const SweetAlert = {
         Swal.fire(
           "Eliminado!",
           "La eliminación se produjo satisfactoriamente!",
-          "Success"
+          "success"
         );
       }
     });
@@ -46,14 +46,13 @@ const SweetAlert = {
     Swal.fire({
       title,
       icon: "warning",
-      showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Ok!",
     }).then((result) => {
       if (result.isConfirmed) {
         callback();
-        Swal.fire("Login correcto!", "Success");
+        Swal.fire("Login correcto!", "success");
       }
     });
   },

@@ -14,7 +14,7 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse>
           <Nav>
-            <Link className="link" to={"/alkemy-react-challenge"}>
+            <Link className="link" to={"/"}>
               Homepage
             </Link>
             <Link className="link" to={"/login"}>

@@ -8,7 +8,7 @@ import { ErrorStyle } from "../componentsStyle/ErrorStyle";
 import IsLoginContext from "../context/IsLoginContext";
 
 const PostForm = () => {
-  const { login } = useContext(IsLoginContext);
+  const { isLogin, login } = useContext(IsLoginContext);
 
   const initialValues = {
     email: "",
@@ -52,6 +52,7 @@ const PostForm = () => {
       SweetAlert.messageError("Ooops! Ocurrió un error!", error);
     }
   };
+  console.log(isLogin);
 
   return (
     <div>

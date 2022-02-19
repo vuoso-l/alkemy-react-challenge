@@ -3,15 +3,19 @@ import SweetAlert from "../helpers/SweetAlert";
 
 const IsLoginContext = createContext();
 
+const loginInitialValue = localStorage.getItem("userLogin") || false;
 const IsLoginProvider = ({ children }) => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(loginInitialValue);
 
   const login = () => {
-    setIsLogin(true);
+    localStorage.setItem("userLogin", true)
+    setIsLogin(localStorage.getItem("userLogin"));
   }
+  
   const closeSession = () => {
     SweetAlert.messageDelete("¿Estás seguro que quieres cerrar sesión?", () => {
       localStorage.removeItem("userToken");
+      localStorage.removeItem("userLogin");
       setIsLogin(false);
     })
   }
