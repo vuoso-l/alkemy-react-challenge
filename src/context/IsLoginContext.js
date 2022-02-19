@@ -13,7 +13,7 @@ const IsLoginProvider = ({ children }) => {
   }
   
   const closeSession = () => {
-    SweetAlert.messageDelete("¿Estás seguro que quieres cerrar sesión?", () => {
+    SweetAlert.messageCloseSession("¿Estás seguro que quieres cerrar sesión?", () => {
       localStorage.removeItem("userToken");
       localStorage.removeItem("userLogin");
       setIsLogin(false);

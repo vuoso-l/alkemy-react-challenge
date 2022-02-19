@@ -39,6 +39,7 @@ const PostForm = () => {
   const postUser = async (values) => {
     try {
       const response = await axios.post("http://challenge-react.alkemy.org/", {
+        headers: {"Content-Security-Policy": "upgrade-insecure-requests"},
         email: values.email,
         password: values.password,
       });
@@ -46,13 +47,12 @@ const PostForm = () => {
       login();
       SweetAlert.messageLoginOk(
         "Aguarde mientras se procesa la información",
-        () => navigate("/alkemy-react-challenge")
+        () => navigate("/")
       );
     } catch (error) {
       SweetAlert.messageError("Ooops! Ocurrió un error!", error);
     }
   };
-  console.log(isLogin);
 
   return (
     <div>
