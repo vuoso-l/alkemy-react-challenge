@@ -8,7 +8,7 @@ import { ErrorStyle } from "../componentsStyle/ErrorStyle";
 import IsLoginContext from "../context/IsLoginContext";
 
 const PostForm = () => {
-  const { isLogin, login } = useContext(IsLoginContext);
+  const { login } = useContext(IsLoginContext);
 
   const initialValues = {
     email: "",
