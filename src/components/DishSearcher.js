@@ -3,8 +3,8 @@ import MenuProduct from "./MenuProduct";
 import SearcherForm from "./SearcherForm";
 import MenuContext from "../context/MenuContext";
 import PlateContext from "../context/PlateContext";
-import { AddButton, H2Style, HomepageSection } from "./BasicTagsStyle";
-import { ProductCardStyle } from "./ProductCardStyle";
+import { AddButton, H2Style, HomepageSection } from "../componentsStyle/BasicTagsStyle";
+import { ProductCardStyle } from "../componentsStyle/ProductCardStyle";
 
 const DishSearcher = () => {
   const { plate } = useContext(PlateContext);

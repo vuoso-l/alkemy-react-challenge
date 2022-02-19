@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import PlateContext from "../context/PlateContext";
-import { GralButton } from "./BasicTagsStyle";
-import { ErrorStyle } from "./ErrorStyle";
+import { GralButton } from "../componentsStyle/BasicTagsStyle";
+import { ErrorStyle } from "../componentsStyle/ErrorStyle";
 
 const SearcherForm = () => {
   const { getSearchQuery } = useContext(PlateContext);

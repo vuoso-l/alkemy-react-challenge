@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { ListGroup } from "react-bootstrap";
 import MenuContext from "../context/MenuContext";
 import IsOpenContext from "../context/IsOpenContext";
-import { DishDetailContainer } from "./DishDetailsStyle";
-import { H2Style } from "./BasicTagsStyle";
+import { DishDetailContainer } from "../componentsStyle/DishDetailsStyle";
+import { H2Style } from "../componentsStyle/BasicTagsStyle";
 
 const DishDetails = () => {
   const { menu } = useContext(MenuContext);

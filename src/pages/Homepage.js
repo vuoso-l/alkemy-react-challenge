@@ -2,16 +2,16 @@ import React from "react";
 import Header from "../components/Header";
 import Menu from "../components/Menu";
 import DishSearcher from "../components/DishSearcher";
-import { GralButton, UlHomepage } from "../components/BasicTagsStyle";
+import { GralButton, UlHomepage } from "../componentsStyle/BasicTagsStyle";
 import Home from "../components/Home";
 import Footer from "../components/Footer";
 import DishDetails from "../components/DishDetails";
-import { HomepageStyle } from "../components/HomepageStyle";
+import { HomepageHeaderStyle } from "../componentsStyle/HomepageStyle";
 
 const Homepage = () => {
   return (
-    <HomepageStyle>
-      <div className="header">
+    <>
+      <HomepageHeaderStyle>
         <Header />
         <UlHomepage>
           <GralButton>
@@ -24,7 +24,7 @@ const Homepage = () => {
             <a href="#searcher">Buscador</a>
           </GralButton>
         </UlHomepage>
-      </div>
+      </HomepageHeaderStyle>
       <section id="home">
         <Home />
       </section>
@@ -36,7 +36,7 @@ const Homepage = () => {
         <DishSearcher />
       </section>
       <Footer />
-    </HomepageStyle>
+    </>
   );
 };
 

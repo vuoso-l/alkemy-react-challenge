@@ -15,8 +15,8 @@ const ProjectRoutes = () => {
         <MenuProvider>
           <IsOpenProvider>
             <Routes>
-              <Route path="/" element={<PrivateRoute />}>
-                <Route path="/" element={<Homepage />} />
+              <Route path="/alkemy-react-challenge" element={<PrivateRoute />}>
+                <Route path="/alkemy-react-challenge" element={<Homepage />} />
               </Route>
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<Error404 />} />

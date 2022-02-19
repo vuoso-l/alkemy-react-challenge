@@ -7,8 +7,8 @@ import {
   GralUl,
   H3Style,
   MenuProductImg,
-} from "./BasicTagsStyle";
-import { MenuProductStyle } from "./MenuProductStyle";
+} from "../componentsStyle/BasicTagsStyle";
+import { MenuProductStyle } from "../componentsStyle/MenuProductStyle";
 
 const MenuProduct = ({ props }) => {
   const {

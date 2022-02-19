@@ -1,6 +1,6 @@
 import React from "react";
-import { H2Style } from "../components/BasicTagsStyle";
-import { NotFoundStyle } from "../components/Error404Style";
+import { H2Style } from "../componentsStyle/BasicTagsStyle";
+import { NotFoundStyle } from "../componentsStyle/Error404Style";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 

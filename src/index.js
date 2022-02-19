@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { GlobalStyle } from "./components/GlobalStyle";
+import { GlobalStyle } from "./componentsStyle/GlobalStyle";
 
 ReactDOM.render(
   <React.StrictMode>

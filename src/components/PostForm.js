@@ -3,8 +3,8 @@ import axios from "axios";
 import SweetAlert from "../helpers/SweetAlert";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { GralButton } from "./BasicTagsStyle";
-import { ErrorStyle } from "./ErrorStyle";
+import { GralButton } from "../componentsStyle/BasicTagsStyle";
+import { ErrorStyle } from "../componentsStyle/ErrorStyle";
 
 const PostForm = () => {
   const initialValues = {

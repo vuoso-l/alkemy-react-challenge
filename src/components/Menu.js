@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import IsOpenContext from "../context/IsOpenContext";
 import MenuProduct from "./MenuProduct";
 import MenuContext from "../context/MenuContext";
-import { ProductCardStyle } from "./ProductCardStyle";
-import { H2Style, HomepageSection } from "./BasicTagsStyle";
+import { ProductCardStyle } from "../componentsStyle/ProductCardStyle";
+import { H2Style, HomepageSection } from "../componentsStyle/BasicTagsStyle";
 
 const Menu = () => {
   const { menu } = useContext(MenuContext);

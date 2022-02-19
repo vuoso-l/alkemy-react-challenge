@@ -1,7 +1,7 @@
 import React from "react";
 import { imgGithub, imgLinkedin, imgPortfolio } from "../styleAux/fontAwesoneIcon";
-import { H4Style } from "./BasicTagsStyle";
-import { FooterStyle } from "./FooterStyle";
+import { H4Style } from "../componentsStyle/BasicTagsStyle";
+import { FooterStyle } from "../componentsStyle/FooterStyle";
 
 const Footer = () => {
   return (

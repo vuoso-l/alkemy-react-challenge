@@ -1,8 +1,8 @@
 import React from "react";
-import { H2Style } from "../components/BasicTagsStyle";
+import { H2Style } from "../componentsStyle/BasicTagsStyle";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { LoginStyle } from "../components/LoginStyle";
+import { LoginStyle } from "../componentsStyle/LoginStyle";
 import PostForm from "../components/PostForm";
 
 const Login = () => {
