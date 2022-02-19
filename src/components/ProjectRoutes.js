@@ -26,7 +26,7 @@ const ProjectRoutes = () => {
                     element={<Homepage />}
                   />
                 </Route>
-                <Route path="/alkemy-react-challenge/login" element={<Login />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/*" element={<Error404 />} />
               </Routes>
             </IsOpenProvider>

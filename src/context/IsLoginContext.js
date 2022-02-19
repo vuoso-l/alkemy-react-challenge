@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import SweetAlert from "../helpers/SweetAlert";
 
 const IsLoginContext = createContext();
 
@@ -9,8 +10,10 @@ const IsLoginProvider = ({ children }) => {
     setIsLogin(true);
   }
   const closeSession = () => {
-    localStorage.removeItem("userToken");
-    setIsLogin(false);
+    SweetAlert.messageDelete("¿Estás seguro que quieres cerrar sesión?", () => {
+      localStorage.removeItem("userToken");
+      setIsLogin(false);
+    })
   }
 
   const data = { isLogin, login, closeSession };

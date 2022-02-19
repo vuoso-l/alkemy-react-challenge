@@ -5,7 +5,7 @@ import IsLoginContext from "../context/IsLoginContext";
 const PrivateRoute = () => {
   const { isLogin } = useContext(IsLoginContext);
   
-  return isLogin ? <Outlet/> : <Navigate to="/alkemy-react-challenge/login" />;
+  return isLogin ? <Outlet/> : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;
