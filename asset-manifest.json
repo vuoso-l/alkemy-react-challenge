@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/alkemy-react-challenge/static/css/main.56e6221f.css",
+    "main.js": "/alkemy-react-challenge/static/js/main.5a61ff0f.js",
+    "static/js/787.2bbaff41.chunk.js": "/alkemy-react-challenge/static/js/787.2bbaff41.chunk.js",
+    "index.html": "/alkemy-react-challenge/index.html",
+    "main.56e6221f.css.map": "/alkemy-react-challenge/static/css/main.56e6221f.css.map",
+    "main.5a61ff0f.js.map": "/alkemy-react-challenge/static/js/main.5a61ff0f.js.map",
+    "787.2bbaff41.chunk.js.map": "/alkemy-react-challenge/static/js/787.2bbaff41.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.56e6221f.css",
+    "static/js/main.5a61ff0f.js"
+  ]
+}
