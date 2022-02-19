@@ -37,7 +37,7 @@ const SweetAlert = {
         Swal.fire(
           "Eliminado!",
           "La eliminación se produjo satisfactoriamente!",
-          "success"
+          "Success"
         );
       }
     });
@@ -53,7 +53,7 @@ const SweetAlert = {
     }).then((result) => {
       if (result.isConfirmed) {
         callback();
-        Swal.fire("Login correcto!", "success");
+        Swal.fire("Login correcto!", "Success");
       }
     });
   },

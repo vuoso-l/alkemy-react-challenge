@@ -17,7 +17,7 @@ const Header = () => {
             <Link className="link" to={"/alkemy-react-challenge"}>
               Homepage
             </Link>
-            <Link className="link" to={"/login"}>
+            <Link className="link" to={"/alkemy-react-challenge/login"}>
               Login
             </Link>
           </Nav>
