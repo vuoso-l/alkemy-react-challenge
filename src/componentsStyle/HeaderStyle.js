@@ -3,7 +3,7 @@ import { device } from "../styleAux/deviceSize";
 import { color, displayFlex } from "../styleAux/theme";
 
 export const HeaderStyle = styled.header`
-  ${displayFlex("flex", "column", "center", "center")};  
+  ${displayFlex("flex", "row", "space-evenly", "center")};  
   width: 100%;
   padding: 20px 0px;
   border-radius: 20px;

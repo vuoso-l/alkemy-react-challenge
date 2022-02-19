@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import SweetAlert from "../helpers/SweetAlert";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { GralButton } from "../componentsStyle/BasicTagsStyle";
 import { ErrorStyle } from "../componentsStyle/ErrorStyle";
+import IsLoginContext from "../context/IsLoginContext";
 
 const PostForm = () => {
+  const { login } = useContext(IsLoginContext);
+
   const initialValues = {
     email: "",
     password: "",
@@ -40,9 +43,10 @@ const PostForm = () => {
         password: values.password,
       });
       localStorage.setItem("userToken", JSON.stringify(response.data.token));
+      login();
       SweetAlert.messageLoginOk(
         "Aguarde mientras se procesa la información",
-        () => navigate("/")
+        () => navigate("/alkemy-react-challenge")
       );
     } catch (error) {
       SweetAlert.messageError("Ooops! Ocurrió un error!", error);
@@ -90,7 +94,9 @@ const PostForm = () => {
                 component="div"
               />
             </ErrorStyle>
-            <GralButton type="submit" disabled={isSubmitting}>Enviar</GralButton>
+            <GralButton type="submit" disabled={isSubmitting}>
+              Enviar
+            </GralButton>
           </Form>
         )}
       </Formik>

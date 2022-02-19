@@ -7,23 +7,32 @@ import PrivateRoute from "./PrivateRoute";
 import { PlateProvider } from "../context/PlateContext";
 import { MenuProvider } from "../context/MenuContext";
 import { IsOpenProvider } from "../context/IsOpenContext";
+import { IsLoginProvider } from "../context/IsLoginContext";
 
 const ProjectRoutes = () => {
   return (
     <div>
-      <PlateProvider>
-        <MenuProvider>
-          <IsOpenProvider>
-            <Routes>
-              <Route path="/alkemy-react-challenge" element={<PrivateRoute />}>
-                <Route path="/alkemy-react-challenge" element={<Homepage />} />
-              </Route>
-              <Route path="/login" element={<Login />} />
-              <Route path="*" element={<Error404 />} />
-            </Routes>
-          </IsOpenProvider>
-        </MenuProvider>
-      </PlateProvider>
+      <IsLoginProvider>
+        <PlateProvider>
+          <MenuProvider>
+            <IsOpenProvider>
+              <Routes>
+                <Route
+                  path="/alkemy-react-challenge"
+                  element={<PrivateRoute />}
+                >
+                  <Route
+                    path="/alkemy-react-challenge"
+                    element={<Homepage />}
+                  />
+                </Route>
+                <Route path="/login" element={<Login />} />
+                <Route path="*" element={<Error404 />} />
+              </Routes>
+            </IsOpenProvider>
+          </MenuProvider>
+        </PlateProvider>
+      </IsLoginProvider>
     </div>
   );
 };

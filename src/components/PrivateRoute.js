@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Outlet, Navigate } from "react-router-dom";
-
-const userToken = JSON.parse(localStorage.getItem("userToken"));
+import IsLoginContext from "../context/IsLoginContext";
 
 const PrivateRoute = () => {
+  const { isLogin } = useContext(IsLoginContext);
   
-  return userToken ? <Outlet/> : <Navigate to="/login" />;
+  return isLogin ? <Outlet/> : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;
