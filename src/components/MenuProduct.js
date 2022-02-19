@@ -15,7 +15,7 @@ const MenuProduct = ({ props }) => {
     id,
     image,
     title,
-    vegetarian,
+    vegan,
     glutenFree,
     veryHealthy,
     cuisines,
@@ -36,7 +36,7 @@ const MenuProduct = ({ props }) => {
 
       <H3Style>{title}</H3Style>
       <GralUl>
-        <li>Vegetariano: {vegetarian ? "Sí" : "No"}</li>
+        <li>Vegano: {vegan ? "Sí" : "No"}</li>
         <li>Gluten free: {glutenFree ? "Sí" : "No"}</li>
         <li>Saludable: {veryHealthy ? "Sí" : "No"}</li>
         <li>
