@@ -31,9 +31,13 @@ const MenuProvider = ({ children }) => {
     let veg = 0;
     let noVeg = 0;
     menu.menuProducts.map((item) => {
-      cookingTime += item.readyInMinutes;
-      healthSc += item.healthScore;
-      item.vegan ? veg++ : noVeg++;
+      return (
+        <>
+          cookingTime += item.readyInMinutes;
+          healthSc += item.healthScore;
+          item.vegan ? veg++ : noVeg++;
+        </>
+      );
     });
     cookingTime += itemFind.readyInMinutes;
     healthSc += itemFind.healthScore;
@@ -87,10 +91,14 @@ const MenuProvider = ({ children }) => {
       let noVeg = 0;
 
       menuWithoutDeleteItem.map((item) => {
-        amount += item.pricePerServing;
-        cookingTime += item.readyInMinutes;
-        healthSc += item.healthScore;
-        item.vegan ? veg++ : noVeg++;
+        return (
+          <>
+            amount += item.pricePerServing;
+            cookingTime += item.readyInMinutes;
+            healthSc += item.healthScore;
+            item.vegan ? veg++ : noVeg++;
+          </>
+        );
       });
       const cookingAvg = cookingTime / menuSize;
       const healthAvg = healthSc / menuSize;
