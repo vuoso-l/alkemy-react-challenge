@@ -7,7 +7,6 @@ const IsOpenProvider = ({ children }) => {
 
   const openDetail = () => {
     setIsOpen(true);
-    console.log(isOpen);
   }
   const closeDetail = () => setIsOpen(false);
 

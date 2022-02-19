@@ -64,9 +64,9 @@ const MenuProvider = ({ children }) => {
       SweetAlert.messageOk("Ítem agregado!", `Agregaste "${itemFind.title}"`);
     } else {
       SweetAlert.messageError(
-        `No podés agregar más productos del tipo ${
+        `No podés agregar más productos del tipo "${
           itemFind.vegan ? "vegano" : "no vegano"
-        }`,
+        }"`,
         "Para agregarlo, primero tenés que eliminar uno"
       );
     }
@@ -83,11 +83,14 @@ const MenuProvider = ({ children }) => {
       let amount = 0;
       let cookingTime = 0;
       let healthSc = 0;
+      let veg = 0;
+      let noVeg = 0;
 
       menuWithoutDeleteItem.map((item) => {
         amount += item.pricePerServing;
         cookingTime += item.readyInMinutes;
         healthSc += item.healthScore;
+        item.vegan ? veg++ : noVeg++;
       });
       const cookingAvg = cookingTime / menuSize;
       const healthAvg = healthSc / menuSize;
@@ -100,6 +103,8 @@ const MenuProvider = ({ children }) => {
             amount: amount,
             cookingAverage: cookingAvg,
             healthScoreAverage: healthAvg,
+            vegAccount: veg,
+            noVegAccount: noVeg,
           });
         } else {
           setMenu(defaultMenu);
