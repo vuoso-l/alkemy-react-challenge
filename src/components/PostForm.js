@@ -39,7 +39,6 @@ const PostForm = () => {
   const postUser = async (values) => {
     try {
       const response = await axios.post("http://challenge-react.alkemy.org/", {
-        headers: {"Content-Security-Policy": "upgrade-insecure-requests"},
         email: values.email,
         password: values.password,
       });
