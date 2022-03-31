@@ -35,14 +35,17 @@ const PostForm = () => {
 
   const postUser = async (values) => {
     try {
-      const response = await axios.post("http://challenge-react.alkemy.org/", {
-        email: values.email,
-        password: values.password,
-      });
-      localStorage.setItem("userToken", JSON.stringify(response.data.token));
+      const response = await axios.post(
+        "https://ctd-todo-api.herokuapp.com/v1/users/login",
+        {
+          email: values.email,
+          password: values.password,
+        },
+      );
+      localStorage.setItem("userToken", JSON.stringify(response.data.jwt));
       SweetAlert.messageLoginOk(
         "Aguarde mientras se procesa la información",
-        () => navigate("/")
+        () => navigate("/"),
       );
     } catch (error) {
       SweetAlert.messageError("Ooops! Ocurrió un error!", error);
@@ -90,7 +93,9 @@ const PostForm = () => {
                 component="div"
               />
             </ErrorStyle>
-            <GralButton type="submit" disabled={isSubmitting}>Enviar</GralButton>
+            <GralButton type="submit" disabled={isSubmitting}>
+              Enviar
+            </GralButton>
           </Form>
         )}
       </Formik>
