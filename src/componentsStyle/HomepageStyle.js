@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { displayFlex } from "../styleAux/theme";
 
 export const HomepageHeaderStyle = styled.div`

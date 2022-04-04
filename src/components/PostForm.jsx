@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import axios from "axios";
-import SweetAlert from "../helpers/SweetAlert";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+
+import SweetAlert from "../helpers/SweetAlert";
 import { GralButton } from "../componentsStyle/BasicTagsStyle";
 import { ErrorStyle } from "../componentsStyle/ErrorStyle";
 import IsLoginContext from "../context/IsLoginContext";
@@ -17,6 +18,7 @@ const PostForm = () => {
 
   const validateForm = (values) => {
     const errors = {};
+
     if (!values.email) {
       errors.email = "Requerido, no puede estar vacío";
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
@@ -24,6 +26,7 @@ const PostForm = () => {
     } else if (!values.password) {
       errors.password = "Requerido, no puede estar vacío";
     }
+
     return errors;
   };
 
@@ -45,6 +48,7 @@ const PostForm = () => {
           password: values.password,
         },
       );
+
       localStorage.setItem("userToken", JSON.stringify(response.data.jwt));
       login();
       SweetAlert.messageLoginOk(
@@ -61,8 +65,7 @@ const PostForm = () => {
       <Formik
         initialValues={initialValues}
         validate={validateForm}
-        onSubmit={handleSubmit}
-      >
+        onSubmit={handleSubmit}>
         {({ errors, isSubmitting }) => (
           <Form className="form">
             <ErrorStyle>

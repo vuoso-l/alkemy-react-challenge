@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { device } from "../styleAux/deviceSize";
 import { color, displayFlex } from "../styleAux/theme";
 
@@ -11,7 +12,7 @@ export const FooterStyle = styled.footer`
   border-radius: 20px;
   a {
     color: white;
-    padding:  0px 5px;
+    padding: 0px 5px;
   }
   @media ${device.tablet} {
     flex-direction: row;

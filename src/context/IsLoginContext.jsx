@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+
 import SweetAlert from "../helpers/SweetAlert";
 
 const IsLoginContext = createContext();
@@ -23,7 +24,7 @@ const IsLoginProvider = ({ children }) => {
         localStorage.removeItem("userToken");
         localStorage.removeItem("userLogin");
         setIsLogin(false);
-      }
+      },
     );
   };
 

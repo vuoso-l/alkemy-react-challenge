@@ -1,4 +1,3 @@
-import React from "react";
 import { H2Style } from "../componentsStyle/BasicTagsStyle";
 import Footer from "../components/Footer";
 import Header from "../components/Header";

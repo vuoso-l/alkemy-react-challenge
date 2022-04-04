@@ -37,7 +37,7 @@ const SweetAlert = {
         Swal.fire(
           "Eliminado!",
           "La eliminación se produjo satisfactoriamente!",
-          "success"
+          "success",
         );
       }
     });
@@ -70,7 +70,7 @@ const SweetAlert = {
         Swal.fire(
           "Sesión cerrada!",
           "La sesión se cerró satisfactoriamente!",
-          "success"
+          "success",
         );
       }
     });

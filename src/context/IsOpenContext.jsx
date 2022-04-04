@@ -7,12 +7,14 @@ const IsOpenProvider = ({ children }) => {
 
   const openDetail = () => {
     setIsOpen(true);
-  }
+  };
   const closeDetail = () => setIsOpen(false);
 
   const data = { isOpen, openDetail, closeDetail };
 
-  return <IsOpenContext.Provider value={data}>{children}</IsOpenContext.Provider>;
+  return (
+    <IsOpenContext.Provider value={data}>{children}</IsOpenContext.Provider>
+  );
 };
 
 export { IsOpenProvider };

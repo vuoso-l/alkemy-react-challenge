@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
+
 import IsOpenContext from "../context/IsOpenContext";
-import MenuProduct from "./MenuProduct";
 import MenuContext from "../context/MenuContext";
 import { ProductCardStyle } from "../componentsStyle/ProductCardStyle";
 import { H2Style, HomepageSection } from "../componentsStyle/BasicTagsStyle";
+
+import MenuProduct from "./MenuProduct";
 
 const Menu = () => {
   const { menu } = useContext(MenuContext);

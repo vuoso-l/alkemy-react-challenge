@@ -38,6 +38,7 @@ module.exports = {
         bracketSameLine: true,
         arrowParens: "always",
         endOfLine: "auto",
+        printWidth: 80,
       },
     ],
     "no-unused-vars": [

@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { ListGroup } from "react-bootstrap";
+
 import MenuContext from "../context/MenuContext";
 import IsOpenContext from "../context/IsOpenContext";
 import { DishDetailContainer } from "../componentsStyle/DishDetailsStyle";
@@ -14,7 +15,11 @@ const DishDetails = () => {
     <DishDetailContainer isOpen={isOpen} onClick={closeDetail}>
       <button onClick={closeDetail}>x</button>
       <H2Style>Detalles del menú</H2Style>
-      <ListGroup className="listGroup" as="ol" numbered onClick={handleContainerClick}>
+      <ListGroup
+        className="listGroup"
+        as="ol"
+        numbered
+        onClick={handleContainerClick}>
         <ListGroup.Item as="li">
           Valor total: ${menu.amount.toFixed(2)}
         </ListGroup.Item>

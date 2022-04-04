@@ -1,4 +1,3 @@
-import React from "react";
 import {
   H2Style,
   HomepageSection,
@@ -25,8 +24,7 @@ const Home = () => {
           <a
             href="https://www.foodista.com/blog/recipes-cooking"
             target="_blank"
-            rel="noreferrer"
-          >
+            rel="noreferrer">
             click acá
           </a>
         </p>
