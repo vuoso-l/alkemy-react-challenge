@@ -35,7 +35,8 @@ const SearcherForm = () => {
       <Formik
         initialValues={initialValues}
         validate={validateForm}
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+      >
         {({ errors, isSubmitting }) => (
           <Form className="form">
             <ErrorStyle>

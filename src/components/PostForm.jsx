@@ -46,14 +46,14 @@ const PostForm = () => {
         {
           email: values.email,
           password: values.password,
-        },
+        }
       );
 
       localStorage.setItem("userToken", JSON.stringify(response.data.jwt));
       login();
       SweetAlert.messageLoginOk(
         "Aguarde mientras se procesa la información",
-        () => navigate("/"),
+        () => navigate("/")
       );
     } catch (error) {
       SweetAlert.messageError("Ooops! Ocurrió un error!", error);
@@ -65,7 +65,8 @@ const PostForm = () => {
       <Formik
         initialValues={initialValues}
         validate={validateForm}
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+      >
         {({ errors, isSubmitting }) => (
           <Form className="form">
             <ErrorStyle>

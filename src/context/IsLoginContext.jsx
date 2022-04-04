@@ -24,7 +24,7 @@ const IsLoginProvider = ({ children }) => {
         localStorage.removeItem("userToken");
         localStorage.removeItem("userLogin");
         setIsLogin(false);
-      },
+      }
     );
   };
 

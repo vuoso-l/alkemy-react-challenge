@@ -19,7 +19,8 @@ const DishDetails = () => {
         className="listGroup"
         as="ol"
         numbered
-        onClick={handleContainerClick}>
+        onClick={handleContainerClick}
+      >
         <ListGroup.Item as="li">
           Valor total: ${menu.amount.toFixed(2)}
         </ListGroup.Item>
