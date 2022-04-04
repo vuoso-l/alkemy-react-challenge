@@ -33,11 +33,14 @@ const MenuProvider = ({ children }) => {
     menu.menuProducts.map((item) => {
       return (
         <>
-          cookingTime += item.readyInMinutes;
-          healthSc += item.healthScore;
-          item.vegan ? veg++ : noVeg++;
+          `
+          ${console.log(item.vegan)};
+          ${cookingTime += item.readyInMinutes};
+          ${healthSc += item.healthScore};
+          ${item.vegan ? veg++ : noVeg++};
+          `
         </>
-      );
+      )
     });
     cookingTime += itemFind.readyInMinutes;
     healthSc += itemFind.healthScore;
@@ -45,6 +48,7 @@ const MenuProvider = ({ children }) => {
     const healthAvg = healthSc / menuSize;
 
     if (itemFind.vegan && veg < 2) {
+      console.log("Click en veg");
       setMenu({
         ...menu,
         menuProducts: [...menu.menuProducts, itemFind],
@@ -56,6 +60,7 @@ const MenuProvider = ({ children }) => {
       });
       SweetAlert.messageOk("Ítem agregado!", `Agregaste "${itemFind.title}"`);
     } else if (!itemFind.vegan && noVeg < 2) {
+      console.log("Click en NO veg");
       setMenu({
         ...menu,
         menuProducts: [...menu.menuProducts, itemFind],
@@ -68,10 +73,9 @@ const MenuProvider = ({ children }) => {
       SweetAlert.messageOk("Ítem agregado!", `Agregaste "${itemFind.title}"`);
     } else {
       SweetAlert.messageError(
-        `No podés agregar más productos del tipo "${
-          itemFind.vegan ? "vegano" : "no vegano"
+        `No podés agregar más productos del tipo "${itemFind.vegan ? "vegano" : "no vegano"
         }"`,
-        "Para agregarlo, primero tenés que eliminar uno"
+        "Para agregarlo, primero tenés que eliminar uno",
       );
     }
   };
@@ -80,7 +84,7 @@ const MenuProvider = ({ children }) => {
     const itemIndex = menu.menuProducts.findIndex((item) => item.id === id);
     if (itemIndex >= 0) {
       const menuWithoutDeleteItem = menu.menuProducts.filter(
-        (item, index) => index !== itemIndex
+        (item, index) => index !== itemIndex,
       );
       let menuSize = menuWithoutDeleteItem.length;
 
@@ -93,10 +97,12 @@ const MenuProvider = ({ children }) => {
       menuWithoutDeleteItem.map((item) => {
         return (
           <>
-            amount += item.pricePerServing;
-            cookingTime += item.readyInMinutes;
-            healthSc += item.healthScore;
-            item.vegan ? veg++ : noVeg++;
+            `
+            ${amount += item.pricePerServing};
+            ${cookingTime += item.readyInMinutes};
+            ${healthSc += item.healthScore};
+            ${item.vegan ? veg++ : noVeg++};
+            `
           </>
         );
       });
