@@ -13,5 +13,8 @@
   - useContext
   - useState
   - useEffect
-- Javascript
+- Axios
 - Styled-components
+- Eslint, Prettier, Husky y lint-staged
+- SweetAlert
+- Deploy in Vercel
